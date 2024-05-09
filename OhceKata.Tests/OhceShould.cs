@@ -105,5 +105,19 @@ namespace OhceKata.Tests
 
             display.Received(1).Write("Error. Debes introducir una sola palabra");
         }
+
+        [Test]
+        public void should_terminate_console_application_when_stop_word_is_entered()
+        {
+            var stopWord = "Stop!";
+            var name = "Manuel";
+            userInput.Read().Returns(name);
+
+            sut.Run();
+            var result = sut.Reverse(stopWord);
+
+            display.Received(1).Write($"Adios {name}!");
+            environment.Received(1).Exit();
+        }
     }
 }

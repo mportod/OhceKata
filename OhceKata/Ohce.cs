@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using Microsoft.VisualBasic;
 
 namespace OhceKata
@@ -29,6 +30,12 @@ namespace OhceKata
 
         public string Reverse(string word)
         {
+            if (IsStopCommand(word))
+            {
+                _display.Write($"Adios {userName}!");
+                _environment.Exit();
+            }
+
             if (ContainsManyWords(word))
             {
                 _display.Write("Error. Debes introducir una sola palabra");
@@ -75,5 +82,11 @@ namespace OhceKata
         {
             return word.Split(' ').Length > 0;
         }
+
+        private static bool IsStopCommand(string word)
+        {
+            return word == "Stop!";
+        }
+
     }
 }
