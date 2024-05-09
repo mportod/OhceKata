@@ -23,15 +23,26 @@ namespace OhceKata
         {
             userName = _userInput.Read();
             var currentTime = _clock.GetCurrentHour();
+            var greeting = GetGreetingMessage(currentTime);
+            _display.Write(greeting);
+        }
+
+        private string GetGreetingMessage(TimeOnly currentTime)
+        {
+            string greeting;
             if (IsOnTheMorning(currentTime))
             {
-                _display.Write($"¡Buenos días {userName}!");
+                greeting = $"¡Buenos días {userName}!";
             }
-            if (IsOnTheAfternoon(currentTime))
+            else if (IsOnTheAfternoon(currentTime))
             {
-                _display.Write($"¡Buenas tardes {userName}!");
+                greeting = $"¡Buenas tardes {userName}!";
             }
-            _display.Write($"¡Buenas noches {userName}!");
+            else
+            {
+                greeting = $"¡Buenas noches {userName}!";
+            }
+            return greeting;
         }
 
         private static bool IsOnTheMorning(TimeOnly currentTime)

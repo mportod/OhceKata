@@ -50,28 +50,18 @@ namespace OhceKata.Tests
             display.Received().Write($"¡Buenas tardes {name}!");
         }
 
-        [Test]
-        public void should_greet_user_at_20()
+        [TestCase(20, 00)]
+        [TestCase(03, 05)]
+        [TestCase(05, 59)]
+        public void should_greet_user_when_time_is_between_20_and_6(int hour, int minute)
         {
-            var userName = "Manuel";
-            userInput.Read().Returns(userName);
-            clock.GetCurrentHour().Returns(new TimeOnly(20, 00));
+            var name = "Manuel";
+            userInput.Read().Returns(name);
+            clock.GetCurrentHour().Returns(new TimeOnly(hour, minute));
 
             sut.Run();
 
-            display.Received().Write($"¡Buenas noches {userName}!");
-        }
-
-        [Test]
-        public void should_greet_user_at_05_and_59()
-        {
-            var userName = "Manuel";
-            userInput.Read().Returns(userName);
-            clock.GetCurrentHour().Returns(new TimeOnly(05, 59));
-
-            sut.Run();
-
-            display.Received().Write($"¡Buenas noches {userName}!");
+            display.Received().Write($"¡Buenas noches {name}!");
         }
     }
 }
