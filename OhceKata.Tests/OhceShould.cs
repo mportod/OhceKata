@@ -95,5 +95,15 @@ namespace OhceKata.Tests
             result.Should().Be("radar");
             display.Received(1).Write("¡Bonita palabra!");
         }
+
+        [Test]
+        public void should_display_error_when_input_is_not_a_word()
+        {
+            var word = "how are you?";
+
+            var result = sut.Reverse(word);
+
+            display.Received(1).Write("Error. Debes introducir una sola palabra");
+        }
     }
 }

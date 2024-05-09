@@ -27,6 +27,22 @@ namespace OhceKata
             _display.Write(greeting);
         }
 
+        public string Reverse(string word)
+        {
+            if (ContainsManyWords(word))
+            {
+                _display.Write("Error. Debes introducir una sola palabra");
+            }
+
+            var reversedWord = new string(word.ToCharArray().Reverse().ToArray());
+            if (word.Equals(reversedWord))
+            {
+                _display.Write("¡Bonita palabra!");
+            }
+            return reversedWord;
+        }
+
+
         private string GetGreetingMessage(TimeOnly currentTime)
         {
             string greeting;
@@ -54,15 +70,10 @@ namespace OhceKata
         {
             return currentTime >= new TimeOnly(12, 00) && currentTime < new TimeOnly(20, 00);
         }
-
-        public string Reverse(string word)
+       
+        private static bool ContainsManyWords(string word)
         {
-            var reversedWord = new string(word.ToCharArray().Reverse().ToArray());
-            if (word.Equals(reversedWord))
-            {
-                _display.Write("¡Bonita palabra!");
-            }
-            return reversedWord;
+            return word.Split(' ').Length > 0;
         }
     }
 }
