@@ -74,5 +74,15 @@ namespace OhceKata.Tests
 
             result.Should().Be("ehcoc");
         }
+
+        [Test]
+        public void should_reverse_when_word_is_not_a_valid_stop_command()
+        {
+            var word = "stop!";
+
+            var result = sut.Reverse(word);
+
+            result.Should().Be("!pots");
+        }
     }
 }
