@@ -30,7 +30,8 @@ namespace OhceKata
             if (IsOnTheAfternoon(currentTime))
             {
                 _display.Write($"¡Buenas tardes {userName}!");
-            } 
+            }
+            _display.Write($"¡Buenas noches {userName}!");
         }
 
         private static bool IsOnTheMorning(TimeOnly currentTime)
