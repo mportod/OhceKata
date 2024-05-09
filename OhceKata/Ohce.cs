@@ -27,6 +27,7 @@ namespace OhceKata
             {
                 _display.Write($"¡Buenos días {userName}!");
             }
+            _display.Write($"¡Buenas tardes {userName}!"); 
         }
 
         private static bool IsOnTheMorning(TimeOnly currentTime)

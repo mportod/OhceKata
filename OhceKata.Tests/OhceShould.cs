@@ -35,5 +35,17 @@ namespace OhceKata.Tests
 
             display.Received().Write($"¡Buenos días {name}!");
         }
+
+        [Test]
+        public void should_greet_user_at_12()
+        {
+            var name = "Manuel";
+            userInput.Read().Returns(name);
+            clock.GetCurrentHour().Returns(new TimeOnly(12, 00));
+
+            sut.Run();
+
+            display.Received().Write($"¡Buenas tardes {name}!");
+        }
     }
 }
