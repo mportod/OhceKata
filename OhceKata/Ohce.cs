@@ -1,4 +1,7 @@
-﻿namespace OhceKata
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.VisualBasic;
+
+namespace OhceKata
 {
     public class Ohce
     {
@@ -19,7 +22,8 @@
         public void Run()
         {
             userName = _userInput.Read();
-            if (_clock.GetCurrentHour().Hour == 6)
+            if ((_clock.GetCurrentHour().Hour == 6 && _clock.GetCurrentHour().Minute == 0) ||
+                (_clock.GetCurrentHour().Hour == 11 && _clock.GetCurrentHour().Minute == 59))
             {
                 _display.Write($"¡Buenos días {userName}!");
             }
