@@ -27,12 +27,20 @@ namespace OhceKata
             {
                 _display.Write($"¡Buenos días {userName}!");
             }
-            _display.Write($"¡Buenas tardes {userName}!"); 
+            if (IsOnTheAfternoon(currentTime))
+            {
+                _display.Write($"¡Buenas tardes {userName}!");
+            } 
         }
 
         private static bool IsOnTheMorning(TimeOnly currentTime)
         {
             return currentTime >= new TimeOnly(06, 00) && currentTime < new TimeOnly(12, 00);
+        }
+
+        private static bool IsOnTheAfternoon(TimeOnly currentTime)
+        {
+            return currentTime >= new TimeOnly(12, 00) && currentTime < new TimeOnly(20, 00);
         }
     }
 }
