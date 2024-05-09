@@ -22,25 +22,14 @@ namespace OhceKata.Tests
             sut = new Ohce(clock, display, userInput, environment);
         }
 
-        [Test]
-        public void should_greet_user_at_six()
+        [TestCase(06, 00)]
+        [TestCase(08, 35)]
+        [TestCase(11, 59)]
+        public void should_greet_user_when_time_is_between_6_and_12(int hour, int minute)
         {
             var name = "Manuel";
             userInput.Read().Returns(name);
-            clock.GetCurrentHour().Returns(new TimeOnly(06, 00));
-
-            sut.Run();
-
-            display.Received().Write($"¡Buenos días {name}!");
-        }
-
-        [Test]
-        public void should_greet_user_at_11_and_59()
-        {
-            var name = "Manuel";
-            userInput.Read().Returns(name);
-
-            clock.GetCurrentHour().Returns(new TimeOnly(11, 59));
+            clock.GetCurrentHour().Returns(new TimeOnly(hour, minute));
 
             sut.Run();
 

@@ -22,11 +22,16 @@ namespace OhceKata
         public void Run()
         {
             userName = _userInput.Read();
-            if ((_clock.GetCurrentHour().Hour == 6 && _clock.GetCurrentHour().Minute == 0) ||
-                (_clock.GetCurrentHour().Hour == 11 && _clock.GetCurrentHour().Minute == 59))
+            var currentTime = _clock.GetCurrentHour();
+            if (IsOnTheMorning(currentTime))
             {
                 _display.Write($"¡Buenos días {userName}!");
             }
+        }
+
+        private static bool IsOnTheMorning(TimeOnly currentTime)
+        {
+            return currentTime >= new TimeOnly(06, 00) && currentTime < new TimeOnly(12, 00);
         }
     }
 }
