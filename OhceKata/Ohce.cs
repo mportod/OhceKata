@@ -54,5 +54,10 @@ namespace OhceKata
         {
             return currentTime >= new TimeOnly(12, 00) && currentTime < new TimeOnly(20, 00);
         }
+
+        public string Reverse(string word)
+        {
+            return new string(word.ToCharArray().Reverse().ToArray());
+        }
     }
 }

@@ -1,3 +1,4 @@
+using FluentAssertions;
 using Microsoft.VisualStudio.TestPlatform.PlatformAbstractions.Interfaces;
 using NSubstitute;
 using NUnit.Framework;
@@ -62,6 +63,16 @@ namespace OhceKata.Tests
             sut.Run();
 
             display.Received().Write($"¡Buenas noches {name}!");
+        }
+
+        [Test]
+        public void should_reverse_when_is_no_palindrome_word()
+        {
+            var word = "coche";
+
+            var result = sut.Reverse(word);
+
+            result.Should().Be("ehcoc");
         }
     }
 }
