@@ -84,5 +84,16 @@ namespace OhceKata.Tests
 
             result.Should().Be("!pots");
         }
+
+        [Test]
+        public void should_reverse_and_display_message_when_is_a_palindrome_word()
+        {
+            var word = "radar";
+
+            var result = sut.Reverse(word);
+
+            result.Should().Be("radar");
+            display.Received(1).Write("¡Bonita palabra!");
+        }
     }
 }

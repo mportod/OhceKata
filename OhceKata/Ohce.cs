@@ -57,7 +57,12 @@ namespace OhceKata
 
         public string Reverse(string word)
         {
-            return new string(word.ToCharArray().Reverse().ToArray());
+            var reversedWord = new string(word.ToCharArray().Reverse().ToArray());
+            if (word.Equals(reversedWord))
+            {
+                _display.Write("¡Bonita palabra!");
+            }
+            return reversedWord;
         }
     }
 }
